@@ -1,0 +1,19 @@
+name: Build og test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - run: dotnet restore ICT.slnx
+      - run: dotnet build ICT.slnx --no-restore -c Release
+      - run: dotnet test ICT.slnx --no-build -c Release
