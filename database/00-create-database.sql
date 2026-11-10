@@ -1,0 +1,3 @@
+IF DB_ID('ICTOrderDb') IS NULL
+    CREATE DATABASE ICTOrderDb;
+GO

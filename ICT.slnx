@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ICT.Api/ICT.Api.csproj" />
+    <Project Path="src/ICT.BusinessLogic/ICT.BusinessLogic.csproj" />
+    <Project Path="src/ICT.DataAccess/ICT.DataAccess.csproj" />
+    <Project Path="src/ICT.Desktop/ICT.Desktop.csproj" />
+    <Project Path="src/ICT.Model/ICT.Model.csproj" />
+    <Project Path="src/ICT.Web/ICT.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ICT.Tests/ICT.Tests.csproj" />
+  </Folder>
+</Solution>
