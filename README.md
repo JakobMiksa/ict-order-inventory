@@ -20,7 +20,15 @@ Ordre- og lagersystem for ICTrust, hvor medlemmer bestiller via web, og administ
 
 Klienterne taler kun med API'et; kun API'et taler med databasen.
 
-## Kom i gang
+## Kom i gang på en ny Windows-PC
+
+1. Klon repoet og åbn PowerShell i repoets rod.
+2. Kør `powershell -ExecutionPolicy Bypass -File scripts/setup.ps1`.
+3. Første gang installerer scriptet .NET SDK 10 og Docker Desktop med winget. Klik Ja i UAC, og accepter Docker Desktops vilkår selv. Genstart PC'en hvis Docker eller WSL2 beder om det, start Docker Desktop, vent til den viser "Engine running", og kør scriptet igen.
+4. Scriptet starter databasen, opretter `ICTOrderDb` og sætter user secret. Det kan køres igen uden skade.
+5. Byg og test: `dotnet build ICT.slnx` og `dotnet test ICT.slnx`.
+
+## Kom i gang manuelt
 
 1. Start Docker Desktop og databasen:
    ```
