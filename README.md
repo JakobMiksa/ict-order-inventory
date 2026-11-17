@@ -49,6 +49,9 @@ Klienterne taler kun med API'et; kun API'et taler med databasen.
 
 ## Arbejdsgang
 
-- Én branch pr. user story, fx `feature/US3-bestil`.
-- Merge til `main` kun via pull request, som en anden i gruppen har godkendt.
+- Backloggen er GitHub Issues (#1-#12), og sprintene styres på tavlen: https://github.com/users/JakobMiksa/projects/3
+- Én branch pr. user story med issue-nummeret i navnet, fx `feature/1-se-varer`.
+- Commit-beskeder nævner issue-nummeret, fx `Vareliste på hjemmesiden (#1)`.
+- Merge til `main` kun via pull request, som den anden i gruppen har godkendt. Pull requesten skriver `Closes #1`, så issuet lukkes og flyttes til Done.
+- Definition of Done står i pull request-skabelonen.
 - GitHub Actions bygger og kører tests ved hvert push og pull request.
