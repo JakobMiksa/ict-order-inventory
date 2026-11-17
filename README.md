@@ -10,3 +10,7 @@ Et bestillingssystem til ICT. Medlemmer bestiller varer på en hjemmeside, og ad
 2. Kør `database/00-create-database.sql` i SSMS
 3. Sæt connection string i `src/ICT.Api` med `dotnet user-secrets`
 4. `dotnet build` og `dotnet test`
+
+## Arbejdsgang
+
+Backloggen ligger som issues, og vi bruger en branch pr. user story, fx `feature/1-se-varer`. Vi merger til main med pull requests.
