@@ -1,0 +1,18 @@
+USE ICTOrderDb;
+GO
+
+CREATE TABLE dbo.Product (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Price DECIMAL(10,2) NOT NULL,
+    StockQuantity INT NOT NULL,
+    Hidden BIT NOT NULL DEFAULT 0
+);
+GO
+
+CREATE TABLE dbo.OrderRound (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Start DATETIME2 NOT NULL,
+    Deadline DATETIME2 NOT NULL
+);
+GO
