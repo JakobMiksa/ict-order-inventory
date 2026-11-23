@@ -5,8 +5,7 @@ CREATE TABLE dbo.Product (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Name NVARCHAR(100) NOT NULL,
     Price DECIMAL(10,2) NOT NULL,
-    StockQuantity INT NOT NULL,
-    Hidden BIT NOT NULL DEFAULT 0
+    StockQuantity INT NOT NULL
 );
 GO
 
