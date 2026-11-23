@@ -7,6 +7,7 @@ namespace ICT.Web.Controllers;
 
 public class HomeController : Controller
 {
+    private const int CurrentMemberId = 1;
     private readonly string _apiUrl;
 
     public HomeController(IConfiguration configuration)
@@ -17,6 +18,7 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         List<Product> products = new List<Product>();
+        ViewBag.Error = TempData["Error"];
 
         try
         {
@@ -38,6 +40,41 @@ public class HomeController : Controller
         }
 
         return View(products);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Order(List<int> productIds, List<int> quantities)
+    {
+        Order order = new Order();
+        order.MemberId = CurrentMemberId;
+        for (int i = 0; i < productIds.Count && i < quantities.Count; i++)
+        {
+            OrderLine line = new OrderLine();
+            line.ProductId = productIds[i];
+            line.Quantity = quantities[i];
+            order.Lines.Add(line);
+        }
+
+        try
+        {
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.PostAsJsonAsync(_apiUrl + "api/orders", order);
+
+            if (response.IsSuccessStatusCode)
+            {
+                int orderId = await response.Content.ReadFromJsonAsync<int>();
+                return View("Receipt", orderId);
+            }
+
+            TempData["Error"] = await response.Content.ReadAsStringAsync();
+        }
+        catch (HttpRequestException)
+        {
+            TempData["Error"] = "Kunne ikke få forbindelse til serveren.";
+        }
+
+        return RedirectToAction("Index");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
