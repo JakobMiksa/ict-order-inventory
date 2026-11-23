@@ -7,7 +7,7 @@ Et bestillingssystem til ICT. Medlemmer bestiller varer på en hjemmeside, og ad
 ## Kør projektet
 
 1. Start databasen: `docker compose up -d` i mappen `docker`
-2. Kør scripts i mappen `database` i SSMS i nummerorden (00, 01)
+2. Kør scripts i mappen `database` i SSMS i nummerorden (00, 01, 02)
 3. Sæt connection string i `src/ICT.Api` med `dotnet user-secrets`
 4. `dotnet build` og `dotnet test`
 
