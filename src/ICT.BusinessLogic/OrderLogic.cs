@@ -16,16 +16,16 @@ public class OrderLogic
 
     public int PlaceOrder(Order order)
     {
-        OrderRound? openRound = _orderRoundAccess.GetOpen();
-        if (openRound == null)
-        {
-            throw new InvalidOperationException("Runden er lukket, så du kan ikke bestille lige nu.");
-        }
-
         order.Lines = order.Lines.Where(line => line.Quantity > 0).ToList();
         if (order.Lines.Count == 0)
         {
             throw new InvalidOperationException("Vælg mindst én vare.");
+        }
+
+        OrderRound? openRound = _orderRoundAccess.GetOpen();
+        if (openRound == null)
+        {
+            throw new InvalidOperationException("Runden er lukket, så du kan ikke bestille lige nu.");
         }
 
         order.OrderRoundId = openRound.Id;

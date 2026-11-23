@@ -48,7 +48,7 @@ public class HomeController : Controller
     {
         Order order = new Order();
         order.MemberId = CurrentMemberId;
-        for (int i = 0; i < productIds.Count; i++)
+        for (int i = 0; i < productIds.Count && i < quantities.Count; i++)
         {
             OrderLine line = new OrderLine();
             line.ProductId = productIds[i];
