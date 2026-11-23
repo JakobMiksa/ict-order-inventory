@@ -15,3 +15,25 @@ CREATE TABLE dbo.OrderRound (
     Deadline DATETIME2 NOT NULL
 );
 GO
+
+CREATE TABLE dbo.Member (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL
+);
+GO
+
+CREATE TABLE dbo.Orders (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    MemberId INT NOT NULL FOREIGN KEY REFERENCES dbo.Member(Id),
+    OrderRoundId INT NOT NULL FOREIGN KEY REFERENCES dbo.OrderRound(Id)
+);
+GO
+
+CREATE TABLE dbo.OrderLine (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    OrderId INT NOT NULL FOREIGN KEY REFERENCES dbo.Orders(Id),
+    ProductId INT NOT NULL FOREIGN KEY REFERENCES dbo.Product(Id),
+    Quantity INT NOT NULL,
+    UnitPrice DECIMAL(10,2) NOT NULL
+);
+GO

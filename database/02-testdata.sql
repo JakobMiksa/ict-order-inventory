@@ -13,3 +13,8 @@ INSERT INTO dbo.OrderRound (Start, Deadline) VALUES
 ('2026-11-05 18:00', '2026-11-19 18:00'),
 ('2026-11-19 18:00', '2026-12-03 18:00');
 GO
+
+INSERT INTO dbo.Member (Name) VALUES
+('Anne Hansen'),
+('Bo Jensen');
+GO
