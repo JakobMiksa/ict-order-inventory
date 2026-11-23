@@ -10,31 +10,47 @@
     <p class="text-danger">@ViewBag.Error</p>
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Vare</th>
-            <th>Pris</th>
-            <th>Tilbage</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in Model)
-        {
+<form asp-action="Order" method="post">
+    <table class="table">
+        <thead>
             <tr>
-                <td>@product.Name</td>
-                <td>@product.Price.ToString("0.00") kr.</td>
-                <td>
-                    @if (product.StockQuantity == 0)
-                    {
-                        <span class="text-danger">Udsolgt</span>
-                    }
-                    else
-                    {
-                        @product.StockQuantity
-                    }
-                </td>
+                <th>Vare</th>
+                <th>Pris</th>
+                <th>Tilbage</th>
+                <th>Antal</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price.ToString("0.00") kr.</td>
+                    <td>
+                        @if (product.StockQuantity == 0)
+                        {
+                            <span class="text-danger">Udsolgt</span>
+                        }
+                        else
+                        {
+                            @product.StockQuantity
+                        }
+                    </td>
+                    <td>
+                        <input type="hidden" name="productIds" value="@product.Id" />
+                        @if (product.StockQuantity == 0)
+                        {
+                            <input type="hidden" name="quantities" value="0" />
+                        }
+                        else
+                        {
+                            <input type="number" name="quantities" value="0" min="0" max="@product.StockQuantity" class="form-control" style="width: 6em" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Bestil</button>
+</form>
