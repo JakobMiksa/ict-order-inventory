@@ -37,4 +37,16 @@ public class ProductAccess
 
         return products;
     }
+
+    public bool AddStock(int productId, int amount)
+    {
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand("UPDATE Product SET StockQuantity = StockQuantity + @amount WHERE Id = @productId", connection);
+            command.Parameters.AddWithValue("amount", amount);
+            command.Parameters.AddWithValue("productId", productId);
+            return command.ExecuteNonQuery() == 1;
+        }
+    }
 }
