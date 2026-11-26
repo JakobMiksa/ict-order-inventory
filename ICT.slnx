@@ -8,6 +8,7 @@
     <Project Path="src/ICT.Web/ICT.Web.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/ICT.OversalgTest/ICT.OversalgTest.csproj" />
     <Project Path="tests/ICT.Tests/ICT.Tests.csproj" />
   </Folder>
 </Solution>
