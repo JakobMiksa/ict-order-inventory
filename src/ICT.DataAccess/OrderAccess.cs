@@ -50,10 +50,13 @@ public class OrderAccess
 
                     using (SqlCommand updateStock = connection.CreateCommand())
                     {
-                        updateStock.CommandText = "UPDATE Product SET StockQuantity = StockQuantity - @quantity WHERE Id = @productId";
+                        updateStock.CommandText = "UPDATE Product SET StockQuantity = StockQuantity - @quantity WHERE Id = @productId AND StockQuantity >= @quantity";
                         updateStock.Parameters.AddWithValue("productId", line.ProductId);
                         updateStock.Parameters.AddWithValue("quantity", line.Quantity);
-                        updateStock.ExecuteNonQuery();
+                        if (updateStock.ExecuteNonQuery() == 0)
+                        {
+                            throw new InvalidOperationException("Desværre, en af varerne er udsolgt, så bestillingen blev ikke gennemført.");
+                        }
                     }
                 }
             }
