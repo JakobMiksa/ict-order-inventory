@@ -21,4 +21,18 @@ public class ProductsController : ControllerBase
     {
         return Ok(_productLogic.GetAll());
     }
+
+    [HttpPost("{id}/stock")]
+    public ActionResult AddStock(int id, [FromBody] int amount)
+    {
+        try
+        {
+            _productLogic.AddStock(id, amount);
+            return Ok();
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

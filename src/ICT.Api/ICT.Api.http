@@ -4,3 +4,10 @@ GET {{ICT.Api_HostAddress}}/api/products
 Accept: application/json
 
 ###
+
+POST {{ICT.Api_HostAddress}}/api/products/4/stock
+Content-Type: application/json
+
+5
+
+###

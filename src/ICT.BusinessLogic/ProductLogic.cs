@@ -16,4 +16,17 @@ public class ProductLogic
     {
         return _productAccess.GetAll();
     }
+
+    public void AddStock(int productId, int amount)
+    {
+        if (amount <= 0)
+        {
+            throw new InvalidOperationException("Antal skal være mindst 1.");
+        }
+
+        if (!_productAccess.AddStock(productId, amount))
+        {
+            throw new InvalidOperationException("Varen findes ikke.");
+        }
+    }
 }
